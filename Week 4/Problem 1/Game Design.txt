@@ -1,0 +1,28 @@
+ Problem Statement - The main method calls the subsequent methods
+                     for setting up and running the two-player
+                     guessing game.
+ 
+ @author Abhijeet Mulik - am6492@rit.edu
+ @author Divyank Kulshrestha - dk9924@rit.edu
+ 
+ Design approach -
+ 
+ Program execution will begin from Picture.java class. It will take ASCII image of super hero and super hero name as a argument for both the player.
+ FileReader class will read the ASCII image file and store it in vector for both players. 
+ Picture.java includes the method playGame(), that will start/end the game if it draws and method init() that will initialize player objects with default/start up values.
+ 
+ The actual game will be controlled from Game.java class playerGame() method.
+ All display related tasks are handled by Display.java class methods.
+ 
+ Player.java class is a plain old java object [POJO] and includes player details like info, name to guess etc.
+ All the constants used in the program are included in Constants.java class.
+ 
+ Control flow -
+ 
+ Player -> Picture.java -> FileReader.java 
+ 
+                        -> Game.java         -> Display.java
+		   
+		                ->Player.java
+						->Constants.java
+						   
