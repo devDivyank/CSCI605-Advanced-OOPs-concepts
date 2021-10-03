@@ -1,0 +1,83 @@
+Program Execution -
+
+ac = new C();
+
+Default constructor of Class A will be executed first.
+aInstanceInt value is set to 1 //for Class A
+
+Default constructor of Class B will be executed second.
+aInstanceInt value is set to 2 //for Class B
+
+Default constructor of Class C will be executed next.
+aInstanceInt value is set to 3 //for Class C
+
+aB = new B();
+
+Default constructor of Class A will be executed.
+aInstanceInt value is set to 1 //for Class A
+
+Default constructor of Class B will be executed next.
+aInstanceInt value is set to 2 //for Class B
+
+aA = new A();
+
+Default constructor of Class A will be executed.
+aInstanceInt value is set to 1 //for Class A
+
+aB = (B)ac; //upcasting
+
+aB will refer to object of class C now
+
+aB.aInstanceIntSet(200);
+
+will call parameterized constructor of its class. [In this case C]
+aInstanceIntSet = 200 //for Class C
+
+aA = (A)aB; //upcasting
+
+aA will refer to aB, which is referring to aC
+aA.setInstanceIntSet(100);  //this will change the value of aInstanceInt to 100 for Class C
+
+Since aA, aB are referring to object of class C, value of aInstanceInt for them will be 100. //aA = aB = aC = 100
+
+----------------------------------------------------
+print():
+
+1: C:100
+   C:100
+   C:100
+   1             //In run time polymorphism values of data members cannot be accessed. aInstanceIntSet for Class A = 1
+   2             //In run time polymorphism values of data members cannot be accessed. aInstanceIntSet for Class B = 2
+   100           // aInstanceIntSet for Class C = 100
+   
+----------------------------------------------------
+
+aA.aInstanceInt = 42; //This will change the aInstanceInt value from Class A to 42
+
+aC.aInstanceInt = 44; //This will change the aInstanceInt value from Class C to 44
+
+----------------------------------------------------
+print():
+
+2: C:44
+   C:44
+   C:44
+   42
+   2
+   44
+  
+----------------------------------------------------
+
+aB.aInstanceInt =43; //This will change the aInstanceInt value from Class B to 43
+
+----------------------------------------------------
+print():
+
+3: C:44
+   C:44
+   C:44
+   42
+   43
+   44
+  
+----------------------------------------------------
