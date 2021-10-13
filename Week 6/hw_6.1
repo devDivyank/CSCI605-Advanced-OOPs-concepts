@@ -1,0 +1,19 @@
+/**
+ *
+ * Problem Statement - Implement a binary search tree that does not allow duplicates
+ * 					   and stores null.
+ *
+ * @author Abhijeet Mulik - am6492@rit.edu
+ * @author Divyank Kulshrestha - dk9924@rit.edu
+ */
+ 
+  Design approach -
+  
+  Program execution willl begin from Test.java class, if the output is different from expected output, error message will be displayed on console.
+  Else no output will be displayed.
+  
+  Node.java - In our node, we are storing a value of 'Object' datatype. Thus, it can store either of the three types - String, Integer and Long. It also implements Comparable interface.
+  While overriding the compareTo method, the instance of the object is checked against the class of value object in the tree.
+  
+  SortedStorageSetWithNulls.java implements all the methods declared in the interface BinarySearchTree.java and creates bst of node objects from Node.java  
+  
