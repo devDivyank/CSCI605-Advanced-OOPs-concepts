@@ -1,0 +1,56 @@
+/**
+ *CSCI 605 HW 8
+ *
+ * @author Abhijeet Mulik - am6492@rit.edu
+ * @author Divyank Kulshrestha - dk9924@rit.edu
+ */
+
+
+Class Interference has 2 subclasses 
+	A - Thing<T>
+	B - ThingThing<T> extends Thing<T>
+
+
+1] ArrayList<Thing<Integer>> listOfIntegerThinges = new ArrayList<>();
+
+		ArrayList of Thing<Integer> is being created. Class Thing expects a generic type <T> as parameter [in this case Integer], which is stored in aType which is of 
+		type T [Integer] 
+		Because of type inference, we don't have to write as below, compiler interprets the type by looking at invocation and corresponding method declaration -
+		ArrayList<Thing<Integer>> listOfIntegerThinges = new ArrayList<Thing<Integer>>();
+   	
+2] Interference.<Integer>insertThing(Integer.valueOf(10), listOfIntegerThinges);
+		
+		Generic method insertThing is being called here with type Integer. Inside the function Thing object of type Integer is created and added to listOfIntegerThinges which
+		will only have Thing<Integer> type objects.
+	    Integer valus 10 is added in List<Thing<Integer>>listOfIntegerThinges, as the first element.
+		
+3} Interference.insertThing(Integer.valueOf(20), listOfIntegerThinges);
+4} Interference.insertThing(Integer.valueOf(30), listOfIntegerThinges);
+   
+		Because of type inference compiler will be able to infer the generic type here as Integer. insertThing can be called without specifying <Integer> before it.
+		on execution of lines 3 and 4, Thing objects holding Integer values 20 and 30 will be added in <Thing<Integer>>listOfIntegerThinges as second and third element.
+
+5] Interference.outputThinges(listOfIntegerThinges);	
+ 
+		Generic method outputThinges is called with type ArrayList of Thing<Integer> type.Then it infers and gets the Integer value stored in each Thing<Integer> object and
+		prints it.
+		
+		Output : 
+		Thing #0 = 10
+		Thing #1 = 20
+		Thing #2 = 30
+			
+6] ArrayList<Thing<String>> listOfStrings = new ArrayList<>();
+7] Interference.<String>insertThing("b", listOfStrings);
+8] Interference.<String>insertThing("a", listOfStrings);
+
+		As above, a new ArrayList of Thing<String> objects is created here. Compiler infers the type of values in Thing objects to be String. insertThing method 
+		adds Thing objects with values "b" and "a" into listOfStrings array. 
+	
+		
+	// Why does the following line not compile?
+	// Interference.<String>insertThing(Integer.valueOf(30), listOfStrings);
+		
+		Due to type compatibility issue, the above line of code will give a compilation error. listOfStrings expects objects of type Thing<String> but we are trying to add
+		an object with Integer value. Inference variable U has incompatible bounds.
+		
