@@ -1,0 +1,77 @@
+/**
+ *CSCI 605 HW 9.1
+ *
+ * @author Abhijeet Mulik - am6492@rit.edu
+ * @author Divyank Kulshrestha - dk9924@rit.edu
+ */
+ 
+ 
+ class MyStack<E> expects a generic parameter of type E as a argument. A Vector of generic type argument E, myStack is created.
+ In Class MyStack<E>, there are 3 methods to add, remove elements from the vector and to check if the vector is empty. 
+ 
+       ______________      
+      |              |     
+      | <<interface>>|     
+ 	  |      I1      |<-|   
+ 	  |______________|  |   
+                        |                      
+                        |_______________________________________________________                               	        
+       _____________`	        ______________    |   _____________       ______|________
+      |             |          |              |<--|  |             |     |              |
+      |   class	    |          |     class    |      |   class	   |     |    class     |
+      |     A1      |<---------|      A2      |<-----|     A3      |     |      A4      |
+      |_____________| 	       |______________|      |_____________|     |______________|
+      	         	  
+	  
+	In class GenericQ has 4 methods m1, m2, m3 and testMyStack.
+	
+	m1(MyStack<? extends A3> aStack) -> m1 accepts aStack as a parameter. aStack is of type MyStack<? extends A3>, so here A3 and the subclass of A3 will be acceptable
+	paramater. 
+	
+	m2(MyStack<?> aStack) -> m2 accepts aStack as a parameter. ? - is wildcard in generics, it is equivalent to saying ? extends Object. Here MyStack of any 
+	object type will be acceptable parameter.
+	
+    	m3(MyStack<? super A3> aStack) -> ? super A3 means A3 and all the super classes of A3 will be acceptable parameters here.
+	
+	testMyStack -> 
+	
+	MyStack<Integer> aMyStack = new MyStack<>();                                              //MyStack of Integer type 'aMyStack' is created here.
+	Vector<MyStack<Integer>>  aVector  = new Vector<MyStack<Integer>>();                     //Vector of type MyStack of Integer 'aVector' is created here
+	
+	MyStack<MyStack<Integer>> bMyStack = new MyStack<MyStack<Integer>>();                   //MyStack of type MyStack of Integer 'bMyStack' is created here.
+	Vector<MyStack<MyStack<Integer>>> bVector  = new Vector<MyStack<MyStack<Integer>>>();   //Vector of type MyStack of MyStack of Integer 'bVector' is created here.
+	
+	MyStack<A1>          	  aA1 = new MyStack<>();   //aA1 is of type MyStack<A1>
+	MyStack<A2>          	  aA2 = new MyStack<>();   //aA2 is of type MyStack<A2>
+	MyStack<A3>          	  aA3 = new MyStack<>();   //aA3 is of type MyStack<A3>
+	MyStack<A4>          	  aA4 = new MyStack<>()    //aA4 is of type MyStack<A4>
+	
+	 m1(aA3);  //here A3 and the subclass of A3 will be acceptable parameter, any attempt to store anything else will give an incompatible bounds error.
+	 
+	 Since A3 does not have any subclass object of only type A3 will be accepted here.
+	 
+	 m2(aA1);  //m2 method will accept MyStack of any object type as a parameter.
+	 m2(aA2);
+	 m2(aA2);
+	 m2(aA4);
+	 
+	 For Example, below will also be a valid call in case of method m2 - 
+	 
+	MyStack<Integer> intMystack = new MyStack<>();
+	MyStack<String> strMystack = new MyStack<>();
+	MyStack<Object> objMystack = new MyStack<>();
+	
+     m2(intMystack);           
+	 m2(strMystack);
+	 m2(objMystack);
+	 
+	 m3 will accept A3 and all the super classes of A3. MyStack of type A3, A2, A1 are all acceptable here.
+	 
+	 m3(aA3);
+	 m3(aA2);
+	 m3(aA1);
+	 
+	aVector.add( aMyStack ); //aVector is a Vector of MyStack of Integer, so this is a valid call. aMyStack will be added to aVector.
+	bVector.add( bMyStack ); //bVector is a Vector of MyStack of MyStack of Integer, so this is a valid call. bMyStack will be added to bVector.
+	
+	//aVector.add( bMyStack ); This will give a type compatibility error.

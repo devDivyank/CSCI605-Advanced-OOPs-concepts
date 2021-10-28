@@ -1,0 +1,95 @@
+
+/**
+ *CSCI 605 HW 9.3
+ *
+ * @author Abhijeet Mulik - am6492@rit.edu
+ * @author Divyank Kulshrestha - dk9924@rit.edu
+ */
+
+
+
+int r = new F().noSystemExit();
+
+
+
+	noSystemExit() method of class F is called. In the try block, an exception is thrown which is caught by the catch block. ‘2’ is printed on the screen and value of ‘0’ is returned 	and assigned to int variable ‘r’.
+
+	In the end, finally block is executed which prints ‘3 finally’ on screen.
+
+
+
+System.out.println(new F().noSystemExit());
+
+
+
+	noSystemExit() method of class F is called again. It executes the same as above. ‘2’ and ‘3 finally’ are printed on the screen on different lines. 
+
+	But this time instead of assigning the return value ‘0’, it is directly printed on the screen.
+
+
+
+new F().noExeption();
+
+
+
+	noExeption() method of class F is called. 
+
+	Try block executes normally, assigning value ‘0’ to int x and printing ‘inside try: 1’ on screen. 
+
+	Catch block is not executed since no exception is thrown. 
+
+	Finally block simply prints ‘inside finally: 3’ on screen. Value ‘3’ is then returned by the function.
+
+
+
+new F().anExeption1();
+
+
+
+	noExeption1() method of class F is called. int[] anArray of length 1 is created.
+
+	Try block executes and evaluates the expression on the right side, which throws divide by zero ArithmeticException. 
+
+	Catch block catches the divide by zero ArithmeticException and is executed. ArrayIndexOutOfBoundsException is thrown again in catch block and execution skips to Finally block. 
+
+	Finally block prints the line ‘inside finally: 3’ on screen and returns ‘2’.
+
+
+
+new F().anExeption2();
+
+
+
+	noExeption2() method of class F is called. int[] anArray of length 1 is created. Try block executes which throws ArrayIndexOutOfBoundsException.
+
+	Thus, catch block for ArithmeticException is skipped and execution moves to finally block.
+
+	Finally block prints ‘inside finally: 3’ and returns ‘2’.
+
+
+
+new F().withSystemExit();
+
+
+
+	withSystemExit() method of class F is called. Try blocks throws an exception which is caught by the catch block. 
+
+	Catch block prints ‘5’ on screen and System.exit(0) stops the program execution abruptly.
+
+
+
+
+
+// return 3;    // does not compile
+
+
+
+	If this line in method noSystemExit() is uncommented, the program won’t compile as this statement will never be reached and executed. Finally block will return out of the function.
+
+
+
+return 3;    // does not compile
+
+
+
+	If this line in method noExeption() is commented, the function will not have any return statement even though method has a return type int. Thus, the program won’t compile.
